@@ -1,0 +1,31 @@
+<div class="card h-100">
+    <div class="card-header">
+        <div class="row">
+            <div class="col">
+                <span class="font-monospace text-secondary">{{product.owner}} </span>
+            </div>
+            <div class="col-auto">
+                <span class="badge bg-dark">{{product.sold}} Sold</span>
+                <button *ngIf="walletId === product.owner" class="btn btn-outline-danger rounded-circle mx-2 py-2">x</button>
+
+            </div>
+        </div>
+    </div>
+    <div class="ratio ratio-4x3">
+        <img [src]="product.image" [alt]="product.name" style="object-fit: cover;">
+    </div>
+    <div class="card-body">
+        <div class="card-title">
+            {{product.name}}
+        </div>
+        <div class="card-text flex-grow-1">{{product.description}}</div>
+        <div class="card-text text-secondary">
+            <span>{{product.location}}</span>
+        </div>
+        <div class="card-text">
+            <button class="btn btn-outline-dark w-100 py-3" (click)="buyProduct()">Buy for {{product.price |
+                formatNear}} NEAR</button>
+            <button *ngIf="walletId === product.owner" class="btn btn-outline-info w-100 py-3">edit</button>
+        </div>
+    </div>
+</div>

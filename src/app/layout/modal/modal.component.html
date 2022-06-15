@@ -1,0 +1,19 @@
+
+<ng-container *ngIf="{configuration: configuration | async} as state">
+    <div class="modal fade" id="createProductModal" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-fullscreen-sm-down">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title">{{state.configuration?.title}}</span>
+                </div>
+                <div class="modal-body">
+                    <ng-content></ng-content>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-dark" data-bs-dismiss="modal" [disabled]="state.configuration?.disableOk" (click)="handleOk()">aceptar</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal" (click)="handleClose()">cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

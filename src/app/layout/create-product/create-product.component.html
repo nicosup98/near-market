@@ -1,0 +1,20 @@
+<form>
+    <label class="form-label">Product name</label>
+    <input type="text" class="form-control" [(ngModel)]="newProduct.name" name='productName'
+        placeholder="name of product" required>
+
+    <label class="form-label">Image Url</label>
+    <input type="text" class="form-control" placeholder="url" name='productUrl' [(ngModel)]="newProduct.image" required>
+
+    <label class="form-label">Description</label>
+    <textarea class="form-control" placeholder="description" name="productDescription"
+        [(ngModel)]="newProduct.description"></textarea>
+
+    <label class="form-label">Location</label>
+    <input type="text" class="form-control" placeholder="location" name="productLocation"
+        [(ngModel)]="newProduct.location">
+
+    <label for="" class="form-label">Price</label>
+    <input type="number" class="form-control" min="0" name="productPrice" [(ngModel)]="newProduct.price" required>
+
+</form>
