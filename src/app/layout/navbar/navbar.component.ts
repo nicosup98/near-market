@@ -23,4 +23,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/login')
   }
 
+  log(value: any){
+    console.log(!!value)
+  }
+
 }

@@ -12,7 +12,8 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
 import { ProductCardComponent } from './layout/product-card/product-card.component';
 import { FormatNearPipe } from './pipes/format-near.pipe';
 import { ModalComponent } from './layout/modal/modal.component';
-import { CreateProductComponent } from './layout/create-product/create-product.component'
+import { CreateProductComponent } from './layout/create-product/create-product.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { CreateProductComponent } from './layout/create-product/create-product.c
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [{provide: WINDOW_PROVIDERS, useValue: window},NearService],
   bootstrap: [AppComponent]

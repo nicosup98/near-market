@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment'
 export class NearService {
   private _walletConnection = new BehaviorSubject<WalletConnection | null>(null);
   walletConnection = this._walletConnection.asObservable()
-  private accountId: any
+  // private accountId: any
   private _account = new BehaviorSubject<ConnectedWalletAccount | null>(null)
   account = this._account.asObservable()
   contract!: any
@@ -25,7 +25,7 @@ export class NearService {
       headers: {}
     })
     this._walletConnection.next(new WalletConnection(near, ''))
-    this.accountId = this._walletConnection.value?.getAccountId()
+    // this.accountId = this._walletConnection.value?.getAccountId()
     this._account.next(this._walletConnection.value?.account() || null)
     this.contract = new Contract(this._account.value as ConnectedWalletAccount, this.nearEnv.contractName, {
       viewMethods: ["getProduct", "getProducts"],

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { firstValueFrom, lastValueFrom } from 'rxjs';
 import { NearService } from '../services/near.service'
 @Component({
   selector: 'app-login',
@@ -10,11 +11,16 @@ export class LoginComponent implements OnInit {
 
   constructor(private nearService: NearService, private router: Router) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    const isSignedIn = await firstValueFrom(this.nearService.isSignedIn())
+    
+    if (isSignedIn) {
+      this.router.navigateByUrl('/products')
+
+    }
   }
 
-  async login(){
-    this.router.navigateByUrl('/products')
+  login() {
     this.nearService.login()
   }
 

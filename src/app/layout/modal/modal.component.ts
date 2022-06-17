@@ -12,7 +12,6 @@ export class ModalComponent implements OnInit {
   configuration = this.modalService.modalConfiguration
 
   ngOnInit(): void {
-    console.log(this.configuration)
   }
 
   handleOk(){

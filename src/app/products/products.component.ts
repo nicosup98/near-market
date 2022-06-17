@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { formatNearAmount } from 'near-api-js/lib/utils/format';
 import { ModalService } from '../layout/modal/modal.service';
 import { ModalConfiguration } from '../Models/ModalConfigartion';
 import { Product } from '../Models/Product';
@@ -14,10 +15,12 @@ export class ProductsComponent implements OnInit {
   products!: Promise<Product[]>
   constructor(private productService: ProductService, private modalService: ModalService, private nearService: NearService) {}
   walletId$ = this.nearService.getAccountId()
+  productToEdit: Product = {} as Product
 
   ngOnInit(): void{
     this.products = this.productService.getProducts()
-    console.table(this.products)
+    console.log('products'); 
+    
   }
 
   openModal(){
@@ -31,8 +34,11 @@ export class ProductsComponent implements OnInit {
     })
   }
 
-  log(p: Product){
-    console.log({p})
+  editProduct(product:Product){
+    console.log({product});
+    
+    this.productToEdit = {...product,price:formatNearAmount(product.price,2)}
+    this.openModal()
   }
 
 }

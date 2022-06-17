@@ -1,4 +1,4 @@
-<div class="card h-100">
+<div class="card h-100 my-2">
     <div class="card-header">
         <div class="row">
             <div class="col">
@@ -6,8 +6,6 @@
             </div>
             <div class="col-auto">
                 <span class="badge bg-dark">{{product.sold}} Sold</span>
-                <button *ngIf="walletId === product.owner" class="btn btn-outline-danger rounded-circle mx-2 py-2">x</button>
-
             </div>
         </div>
     </div>
@@ -23,9 +21,26 @@
             <span>{{product.location}}</span>
         </div>
         <div class="card-text">
-            <button class="btn btn-outline-dark w-100 py-3" (click)="buyProduct()">Buy for {{product.price |
-                formatNear}} NEAR</button>
-            <button *ngIf="walletId === product.owner" class="btn btn-outline-info w-100 py-3">edit</button>
+            <button *ngIf="product.owner !== walletId" 
+                    class="btn btn-outline-dark w-100 py-3"
+                    (click)="buyProduct()">
+                Buy for {{product.price | formatNear}} NEAR
+            </button>
+            <div class="d-xl-flex d-lg-inline-flex justify-content-center">
+                <button *ngIf="walletId === product.owner" 
+                        class="btn btn-outline-primary me-1 w-100 py-3"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#createProductModal" 
+                        (click)="editProduct()" >
+                        edit
+                </button>
+
+                <button *ngIf="walletId === product.owner" 
+                        class="btn btn-outline-danger ms-1 w-100 py-3"
+                        (click)="deleteProduct()">
+                        delete
+                </button>
+            </div>
         </div>
     </div>
 </div>
