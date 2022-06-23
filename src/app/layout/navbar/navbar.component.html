@@ -1,7 +1,7 @@
 <nav class="navbar bg-light">
   <div class="container-fluid">
     <ng-container *ngIf="{wallet: wallet$ | async, amount: amount$| async} as state; ">
-      <span class="navbar-brand mb-0 h1" *ngIf="state.wallet; else elseBlock">
+      <span class="navbar-brand mb-0 h1" *ngIf="state.wallet && isSignedIn$ | async; else elseBlock">
         {{state.wallet}} : {{state.amount}} NEAR
       </span>
     </ng-container>

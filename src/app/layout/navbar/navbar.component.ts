@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { NearService } from 'src/app/services/near.service';
 
 
@@ -11,11 +12,12 @@ import { NearService } from 'src/app/services/near.service';
 export class NavbarComponent implements OnInit {
 
   constructor(private nearService: NearService, private router: Router) { }
-  isSignedIn$ = this.nearService.isSignedIn()
+  isSignedIn$!: Observable<boolean>
   wallet$ = this.nearService.getAccountId()
   amount$ = this.nearService.accountBalance()
   ngOnInit(): void {
-    
+  this.isSignedIn$ = this.nearService.isSignedIn()
+  
   }
 
   logOut(){

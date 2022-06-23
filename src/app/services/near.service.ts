@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { connect, ConnectedWalletAccount, Contract, keyStores, WalletConnection } from 'near-api-js'
+import { connect, ConnectedWalletAccount, Contract, keyStores, Near, WalletConnection } from 'near-api-js'
 import { formatNearAmount } from 'near-api-js/lib/utils/format';
 import { BehaviorSubject, map, switchMap, tap } from 'rxjs';
 import { environment } from '../../environments/environment'
@@ -15,16 +15,17 @@ export class NearService {
   account = this._account.asObservable()
   contract!: any
   nearEnv = environment.nearConf
+  private near!: Near
 
   constructor() { }
 
 
   async initContract() {
-    const near = await connect({
+    this.near = await connect({
       ...this.nearEnv, deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore(localStorage) },
       headers: {}
     })
-    this._walletConnection.next(new WalletConnection(near, ''))
+    this._walletConnection.next(new WalletConnection(this.near, ''))
     // this.accountId = this._walletConnection.value?.getAccountId()
     this._account.next(this._walletConnection.value?.account() || null)
     this.contract = new Contract(this._account.value as ConnectedWalletAccount, this.nearEnv.contractName, {
@@ -50,6 +51,7 @@ export class NearService {
 
   logOut() {
     this._walletConnection.value?.signOut()
+    this._walletConnection.next(new WalletConnection(this.near, ''))
   }
 
   isSignedIn() {

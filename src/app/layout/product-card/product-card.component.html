@@ -28,7 +28,7 @@
             </button>
             <div class="d-xl-flex d-lg-inline-flex justify-content-center">
                 <button *ngIf="walletId === product.owner" 
-                        class="btn btn-outline-primary me-1 w-100 py-3"
+                        class="btn btn-outline-primary me-lg-1 my-1 w-100 py-3"
                         data-bs-toggle="modal" 
                         data-bs-target="#createProductModal" 
                         (click)="editProduct()" >
@@ -36,7 +36,7 @@
                 </button>
 
                 <button *ngIf="walletId === product.owner" 
-                        class="btn btn-outline-danger ms-1 w-100 py-3"
+                        class="btn btn-outline-danger ms-lg-1 my-1 w-100 py-3"
                         (click)="deleteProduct()">
                         delete
                 </button>
