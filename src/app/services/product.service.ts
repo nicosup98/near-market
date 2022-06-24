@@ -33,13 +33,27 @@ export class ProductService {
   buyProduct({id, price}: Product){
     this.nearService.contract.buyProduct({id},this.GAS, price)
   }
+
   async deleteProduct(product: Product){
     await this.nearService.contract.deleteProduct({product})
   }
+
   async editProduct(product: Product){
     if(this.validateProduct(product)){
       product.price = parseNearAmount(product.price + '') ?? ''
       await this.nearService.contract.editProduct({newProduct: product})
     }
+  }
+
+  async getOwnerProducts(owner: string){
+    const products = await this.getProducts()
+
+    return products.filter(p=> p.owner == owner)
+  }
+
+  async getProductsCanBuy(owner: string){
+    const products = await this.getProducts()
+
+    return products.filter(p=> p.owner != owner)
   }
 }

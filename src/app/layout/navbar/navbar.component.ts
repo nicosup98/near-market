@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NearService } from 'src/app/services/near.service';
+import { faSignOut } from '@fortawesome/free-solid-svg-icons'
 
 
 @Component({
@@ -10,6 +11,10 @@ import { NearService } from 'src/app/services/near.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+
+  icons = {
+    faSignOut
+  }
 
   constructor(private nearService: NearService, private router: Router) { }
   isSignedIn$!: Observable<boolean>

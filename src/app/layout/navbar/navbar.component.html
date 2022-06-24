@@ -6,7 +6,7 @@
       </span>
     </ng-container>
     <div class="d-flex">
-      <button *ngIf="isSignedIn$ | async" class="btn btn-outline-danger" (click)="logOut()">log out</button>
+      <button *ngIf="isSignedIn$ | async" class="btn btn-outline-danger" (click)="logOut()" id="button_closed"><fa-icon [icon]="icons['faSignOut']"></fa-icon><span class="ms-1">log out</span></button>
 
     </div>
   </div>

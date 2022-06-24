@@ -1,0 +1,31 @@
+#button_closed span {
+    display: none
+}
+
+#button_closed:hover {
+
+    span{
+        display: inline;
+
+        animation: logOut 500ms ease;
+
+    }
+}
+
+#button_closed{
+    overflow: hidden;
+}
+
+@keyframes logOut {
+    from{
+        opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+
+// #button_closed:hover span::after {
+//     content: "log out";
+// }
