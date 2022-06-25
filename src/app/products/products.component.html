@@ -1,6 +1,6 @@
 <div class="container-fluid">
-    <div class="d-flex justify-content-end">
-        <button class="btn m-2" [ngClass]="{'btn-secondary':showOwnerProducts | async,'btn-outline-secondary':!(showOwnerProducts | async)}" (click)="changeProducts()">{{(showOwnerProducts | async)? 'show other products' : 'show my products'}}</button>
+    <div class="d-flex justify-content-end" *ngIf="{showOwnerProducts: showOwnerProducts | async} as state">
+        <button class="btn m-2" [ngClass]="{'btn-secondary':state.showOwnerProducts,'btn-outline-secondary':!state.showOwnerProducts}" (click)="changeProducts()">{{state.showOwnerProducts? 'show other products' : 'show my products'}}</button>
         <button class="btn btn-dark rounded-circle m-2" data-bs-toggle="modal" data-bs-target="#createProductModal" (click)="openModal()"><fa-icon [icon]="icons['faPlus']"></fa-icon></button>
     </div>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-6">
